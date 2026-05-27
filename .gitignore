@@ -1,0 +1,32 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+out/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Binaries
+*.exe
+*.dll
+*.lib
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.class
+*.jar
+
+# Runtime data
+*.bin
+*.dat
+
+# IDE and OS files
+.idea/
+.vs/
+.vscode/
+.DS_Store
