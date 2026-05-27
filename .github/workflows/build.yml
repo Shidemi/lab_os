@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  windows-cmake:
+    name: Windows CMake
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -G "Visual Studio 17 2022"
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+  lab6-java:
+    name: Lab 6 Java
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Compile
+        run: javac -encoding UTF-8 -d build/lab6/classes lab6/src/main/java/lab3/*.java
+
+      - name: Smoke test
+        run: |
+          printf '3\n2\n1\n2\n' | timeout 10s java -cp build/lab6/classes lab3.Main
